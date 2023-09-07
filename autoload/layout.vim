@@ -12,12 +12,8 @@ function! layout#load(path) abort
 	let path = expand(!empty(a:path) ? a:path : get(g:, 'layout_path', s:layout_path_def))
 	let tagpage_layouts = json_decode(join(readfile(path), ''))
 	" keep only one window and one tabpage.
-	for n in range(2, tabpagenr('$'))
-		only!
-		tabclose
-	endfor
-	only!
-	enew
+	tabnew
+	tabonly!
 	" restore tabpages and windows
 	for n in range(1, len(tagpage_layouts))
 		if 1 < n
