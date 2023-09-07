@@ -1,0 +1,12 @@
+#!/bin/bash -u
+
+cd $(dirname $0)
+if echo $@ | grep c; then
+  git update-ref -d HEAD
+  rm .git/index
+  git add update
+  git commit -m m
+  exit
+fi
+git remote add up /data/vim/repos/github.com/rbtnn/vim-layout
+git fetch up
